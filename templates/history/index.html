@@ -1,0 +1,121 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'doubanhis/css/index.css' %}" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.js"></script>
+    <script src="{% static 'doubanhis/js/load_charts.js'%}"></script>
+
+    <script src="{% static 'doubanhis/js/stackblur.js'%}"></script>
+    
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container navcustom">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">豆瓣历史 30 天</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">关于</a>
+                    </li>
+                    <li>
+                        <a href="#contact">反馈</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="note">
+
+            <i>
+                <h4>
+                    <b>* 数据来源于豆瓣 API</b>
+                </h4>
+                <h4>
+                    <b>* 每 24 小时更新</b>
+                </h4>
+            </i>
+
+        </div>
+
+        <!-- <div class="card">
+            <div class="poster div-inline">
+                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511434383.webp">
+            </div>
+            <div id='main' class="chart div-inline">
+            </div>
+            <div class="yuan1"></div>
+            <div class="yuan2"></div>
+        </div> -->
+
+        {% for subject in subject_list %}
+
+        <div class="card">
+            <div class="poster div-inline poster-{{ subject.pk }}"><img src="#" alt="{{ subject.title }}"></div>
+            <div class="chart div-inline" id="chart-{{ subject.pk }}"></div>
+            <div class="yuan1"></div>
+            <div class="yuan2"></div>
+            <script>
+                var pk = {{ subject.pk|safe }}
+                var id = 'chart-'+pk
+                var title = '{{ subject.title|safe }}'
+                var original_title = '{{ subject.original_title|safe }}'
+                var show_title = title
+                if(title != original_title)
+                    show_title = title + ' - ' + original_title
+                var rating = {{ subject.history_rating|safe }}
+                chart = document.getElementById(id)
+                initChart(chart, show_title, rating)
+                var poster_id = 'poster-'+pk
+                var poster = document.getElementsByClassName(poster_id)
+                var img_id = {{ subject.id|safe }}
+                poster[0].firstChild.src = "static/doubanhis/img/poster/"+img_id+".webp"
+            </script>
+        </div>
+        {% endfor %}
+        
+        <!-- <script type="text/javascript">
+            
+            alert(list)
+            charts = document.getElementsByClassName('chart')
+            for (var c = 0; c < charts.length; c++) {
+                initChart(charts[c], list[c])
+            }
+        </script> -->
+
+    </div>
+    <!-- /.container -->
+
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

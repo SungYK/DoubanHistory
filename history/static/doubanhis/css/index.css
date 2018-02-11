@@ -1,0 +1,90 @@
+body {
+    padding-top: 50px;
+    background-color: #E2DFDF;
+    
+  }
+
+.navcustom {
+  margin:0 auto;
+  width: 1000px;
+}
+
+
+
+.card {
+  position: relative;
+  
+  background-color: rgb(255, 245, 240);
+  /* background-color: #ffffff; */
+  /* margin: 30px 0px; */
+  margin:30px auto;
+  padding: 20px 15px;
+  text-align: center;
+  width: 1000px;
+  height: 350px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #9C7878;
+  transition: 0.3s;
+  
+  /* border: 5px;
+  border-style: solid */
+}
+
+.card:hover {
+  box-shadow: 2px 2px 13px #9C7878;
+}
+
+.poster {
+  margin: 0 5% 0 3%;
+  width: 22%;
+  height: 100%;
+  border: 5px;
+  border-style: solid
+}
+
+.chart {
+  padding-left: 5%;
+  width: 65%;
+  height: 100%;
+  /* border: 3px; */
+  border-left: 3px dotted #eaeaea;
+  /* border-style: solid */
+}
+
+.div-inline{
+  float: left
+}
+
+.poster img{
+  width: 100%;
+  height: 100%
+}
+
+.note {
+  margin:30px auto;
+  width: 1000px;
+  text-align: center;
+}
+
+.yuan1{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #E2DFDF;
+    left: 297px;
+    top:-10px;
+    /* box-shadow: 0px -1px 10px #9C7878 inset; */
+    /* border: 3px;
+    border-style: solid */
+}
+.yuan2{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #E2DFDF;
+    left: 297px;
+    bottom: -10px;
+    box-shadow: 0px 1px 0.5px #9C7878 inset;
+}
