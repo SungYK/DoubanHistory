@@ -90,7 +90,7 @@
                     show_title = title + ' - ' + original_title
                 var rating = {{ subject.history_rating|safe }}
                 chart = document.getElementById(id)
-                initChart(chart, show_title, rating)
+                initChart(chart, show_title, rating, pk)
                 var poster_id = 'poster-'+pk
                 var poster = document.getElementsByClassName(poster_id)
                 var img_id = {{ subject.id|safe }}

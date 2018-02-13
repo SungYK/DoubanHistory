@@ -1,12 +1,18 @@
 
-function initChart(element, title, rating) {
+function initChart(element, title, rating, id) {
     var myChart = echarts.init(element);
     var now = new Date()
     var data = []
+    var dataX = []
+    var dataY = []
     
     empty_data_flag = 1
     for(var key in rating) {
-        data.push(getData(new Date(key), rating[key]))
+        var year = key.substring(0,4)
+        var month = key.substring(5, key.length)
+        dataX.push(year+"\n"+month)
+        dataY.push(rating[key])
+        // data.push(getData(new Date(key), rating[key]))
         if(rating[key] != 0)
             empty_data_flag = 0
     }
@@ -26,7 +32,7 @@ function initChart(element, title, rating) {
                 30, // 左
             ],
             subtext : "豆瓣链接",
-            sublink: '#'
+            sublink: 'https://movie.douban.com/subject/'+id
         },
         tooltip: {
             trigger: 'axis'
@@ -38,7 +44,8 @@ function initChart(element, title, rating) {
             type: 'category',
             splitLine: {
                 show: false
-            }
+            },
+            data: dataX
         },
         yAxis: {
             min: function (value) {
@@ -49,15 +56,15 @@ function initChart(element, title, rating) {
             },
             type: 'value'
         },
-        // dataZoom: [
-        //     {
-        //         type: 'inside',
-        //         start: 0,
-        //         end: 100
-        //     }
-        // ],
+        dataZoom: [
+            {
+                type: 'inside',
+                start: 0,
+                end: 100
+            }
+        ],
         series: [{
-            data: data,
+            data: dataY,
             type: 'line'
         }],
     };
