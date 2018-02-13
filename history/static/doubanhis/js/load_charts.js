@@ -12,6 +12,7 @@ function initChart(element, title, rating, id) {
         var month = key.substring(5, key.length)
         dataX.push(year+"\n"+month)
         dataY.push(rating[key])
+        
         // data.push(getData(new Date(key), rating[key]))
         if(rating[key] != 0)
             empty_data_flag = 0
@@ -72,6 +73,7 @@ function initChart(element, title, rating, id) {
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
     myChart.hideLoading()
+    return rating
     
 }
 

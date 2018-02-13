@@ -88,3 +88,10 @@ body {
     bottom: -10px;
     box-shadow: 0px 1px 0.5px #9C7878 inset;
 }
+
+
+.load_animation{
+  width: 1000px;
+  margin-bottom: 70px;
+  position: absolute
+}
