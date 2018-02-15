@@ -11,3 +11,6 @@ def index(request):
         lst.append([i.pk, i.title, i.original_title, i.history_rating])
 
     return render(request, 'history/index.html', context={'subject_list':subject_list, 'lst':lst})
+
+def about(request):
+    return render(request, 'history/about.html')

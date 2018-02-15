@@ -1,165 +1,110 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Custom styles for this template -->
-    <link href="{% static 'doubanhis/css/index.css' %}" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.js"></script>
-    <script src="{% static 'doubanhis/js/load_charts.js'%}"></script>
+{% block main %}
+<div class="container">
+    <div class="note">
 
-    <script src="{% static 'doubanhis/js/spin.js'%}"></script>
-
-    <title>豆瓣历史30天</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container navcustom">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">豆瓣历史 30 天</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about">关于</a>
-                    </li>
-                    <li>
-                        <a href="#contact">反馈</a>
-                    </li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="note">
-
-            <i>
-                <h4>
-                    <b>* 数据来源于豆瓣 API</b>
-                </h4>
-                <h4>
-                    <b>* 收录正在上映影片</b>
-                </h4>
-            </i>
-
-        </div>
-        <div class="card_list"></div>
-        <!-- <div class="card">
-            <div class="poster div-inline">
-                <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511434383.webp">
-            </div>
-            <div id='main' class="chart div-inline">
-            </div>
-            <div class="yuan1"></div>
-            <div class="yuan2"></div>
-        </div> -->
-
-        <div class="note" id="div-button">
-            <button type="button" id="load_button" class="btn btn-default js-load-more load_button">加载更多</button>
-            <div id="load_animation" class="load_animation"></div>
-        </div>
-
-
-
-        <script>
-            var List = {{ lst| safe }}
-
-            function show_card(data) {
-                var pk = data[0]
-                var id = 'chart-' + pk
-                var title = data[1]
-                var original_title = data[2]
-                var show_title = title
-                if (title != original_title)
-                    show_title = title + ' - ' + original_title
-                var rating = JSON.parse(data[3])
-                var img_src = "static/doubanhis/img/poster/" + pk + ".webp"
-                result = "<div class='card'>\
-                                <div class='poster div-inline poster-"+ pk + "'>\
-                                    <img src='"+ img_src + "' alt='" + title + "'>\
-                                </div>\
-                                <div class='chart div-inline' id='chart-"+ pk + "'></div>\
-                                <div class='yuan1'></div>\
-                                <div class='yuan2'></div>\
-                                </div>"
-                $('div.card_list').append(result)
-                var chart = document.getElementById(id)
-                initChart(chart, show_title, rating, pk)
-            }
-
-            $(function () {
-
-                /*初始化*/
-                var counter = 0; /*计数器*/
-                var pageStart = 0; /*offset*/
-                var pageSize = 10; /*size*/
-
-                /*首次加载*/
-                for (var i = 0; i < pageSize; i++) {
-                    show_card(List[i])
-
-                }
-                /*监听加载更多*/
-                $(document).on('click', '.js-load-more', function () {
-                    counter++;
-                    pageStart = counter * pageSize
-                    var target = document.getElementById('load_animation');
-                    var btn = document.getElementById('load_button');
-                    btn.style.display = "none"
-                    new Spinner({color:'#000', lines: 2, length: 15, speed: 2.0}).spin(target)
-                    
-                    setTimeout(() => {
-                        for (var i = pageStart; i < (pageStart + pageSize) && i<List.length; i++) {
-                            show_card(List[i])
-                        }
-                        btn.style.display = "inline"
-                        target.innerHTML = ''
-                        if((counter+1)*pageSize >= List.length) {
-                            document.getElementById('div-button').innerHTML = '没有更多数据'
-                        }
-                    }, 700);
-                });
-                
-                
-            });
-        </script>
-
-        <!-- <script type="text/javascript">
-            
-            alert(list)
-            charts = document.getElementsByClassName('chart')
-            for (var c = 0; c < charts.length; c++) {
-                initChart(charts[c], list[c])
-            }
-        </script> -->
+        <i>
+            <h4>
+                <b>* 数据来源于豆瓣 API</b>
+            </h4>
+            <h4>
+                <b>* 收录正在上映影片</b>
+            </h4>
+        </i>
 
     </div>
-    <!-- /.container -->
+    <div class="card_list"></div>
+    <!-- <div class="card">
+        <div class="poster div-inline">
+            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511434383.webp">
+        </div>
+        <div id='main' class="chart div-inline">
+        </div>
+        <div class="yuan1"></div>
+        <div class="yuan2"></div>
+    </div> -->
+
+    <div class="note" id="div-button">
+        <button type="button" id="load_button" class="btn btn-default js-load-more load_button">加载更多</button>
+        <div id="load_animation" class="load_animation"></div>
+    </div>
 
 
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-</body>
+    <script>
+        document.getElementById('nav-home').className = 'active'
+        var List = {{ lst| safe }}
 
-</html>
+        function show_card(data) {
+            var pk = data[0]
+            var id = 'chart-' + pk
+            var title = data[1]
+            var original_title = data[2]
+            var show_title = title
+            if (title != original_title)
+                show_title = title + ' - ' + original_title
+            var rating = JSON.parse(data[3])
+            var img_src = "static/doubanhis/img/poster/" + pk + ".webp"
+            result = "<div class='card'>\
+                            <div class='poster div-inline poster-"+ pk + "'>\
+                                <img src='"+ img_src + "' alt='" + title + "'>\
+                            </div>\
+                            <div class='chart div-inline' id='chart-"+ pk + "'></div>\
+                            <div class='hole-1'></div>\
+                            <div class='hole-2'></div>\
+                            </div>"
+            $('div.card_list').append(result)
+            var chart = document.getElementById(id)
+            initChart(chart, show_title, rating, pk)
+        }
+
+        $(function () {
+
+            /*初始化*/
+            var counter = 0; /*计数器*/
+            var pageStart = 0; /*offset*/
+            var pageSize = 10; /*size*/
+
+            /*首次加载*/
+            for (var i = 0; i < pageSize; i++) {
+                show_card(List[i])
+
+            }
+            /*监听加载更多*/
+            $(document).on('click', '.js-load-more', function () {
+                counter++;
+                pageStart = counter * pageSize
+                var target = document.getElementById('load_animation');
+                var btn = document.getElementById('load_button');
+                btn.style.display = "none"
+                new Spinner({color:'#000', lines: 2, length: 15, speed: 2.0}).spin(target)
+                
+                setTimeout(() => {
+                    for (var i = pageStart; i < (pageStart + pageSize) && i<List.length; i++) {
+                        show_card(List[i])
+                    }
+                    btn.style.display = "inline"
+                    target.innerHTML = ''
+                    if((counter+1)*pageSize >= List.length) {
+                        document.getElementById('div-button').innerHTML = '没有更多数据'
+                    }
+                }, 700);
+            });
+            
+            
+        });
+    </script>
+
+    <!-- <script type="text/javascript">
+        
+        alert(list)
+        charts = document.getElementsByClassName('chart')
+        for (var c = 0; c < charts.length; c++) {
+            initChart(charts[c], list[c])
+        }
+    </script> -->
+
+</div>
+<!-- /.container -->
+{% endblock main %}

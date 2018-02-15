@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block main %}
+<div class="container">
+    <div class='about'>
+        <i>
+            <h1>ABOUT</h1>
+        </i>
+        
+        <hr>
+        <i>
+                <h3># INTRO</h3>
+                
+            </i>
+            <hr>
+        <p>这是一个收集院线上映电影的豆瓣历史评分的网站，源于突然有一天想观察一部电影豆瓣评分变化，搜索之后发现还没有这样的网站，就自己写了一个。 由于是第一次做，没什么经验，目前还是比较简陋，如果对你有所帮助，希望你可以分享给其他人。
+        </p>
+        <ul>
+            <li>
+                数据来源于
+                <a href="https://developers.douban.com/wiki/?title=guide">豆瓣 API</a>
+            </li>
+
+            <li>
+                前端图表展示
+                <a href="https://github.com/ecomfe/echarts">Echarts</a>
+            </li>
+            <li>
+                仅收录正在上映影片
+            </li>
+        </ul>
+        
+        <i>
+            <h3># CONTACT</h3>
+            
+        </i>
+        <hr>
+        <p>E-mail: cirillaye#outlook.com</p>
+        
+
+    </div>
+    
+    <script>document.getElementById('nav-about').className = 'active'</script>
+</div>
+<footer>Copyright © 2018 Cirillaye. All rights reserved.</footer>
+{% endblock main %}
