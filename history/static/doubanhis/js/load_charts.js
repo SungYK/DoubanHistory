@@ -7,6 +7,10 @@ function initChart(element, title, rating, id) {
     var dataY = []
     
     empty_data_flag = 1
+
+    // gap
+    dataX.push(" ")
+    dataY.push(null)
     for(var key in rating) {
         var year = key.substring(0,4)
         var month = key.substring(5, key.length)
@@ -17,6 +21,10 @@ function initChart(element, title, rating, id) {
         if(rating[key] != 0)
             empty_data_flag = 0
     }
+    // gap
+    dataX.push(" ")
+    dataY.push(null)
+    console.log(dataX)
     
     if (empty_data_flag == 1) {
         title = title + " (暂无数据)"
@@ -46,10 +54,13 @@ function initChart(element, title, rating, id) {
             splitLine: {
                 show: false
             },
+            boundaryGap:false,
             data: dataX
         },
         yAxis: {
             min: function (value) {
+                if(value.min - 0.5 <= 0)
+                    return 0
                 return value.min - 0.5;
             },
             max: function (value) {

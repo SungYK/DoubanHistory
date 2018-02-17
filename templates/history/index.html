@@ -17,7 +17,7 @@
     <div class="card_list"></div>
     <!-- <div class="card">
         <div class="poster div-inline">
-            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511434383.webp">
+            <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2511434383.jpg">
         </div>
         <div id='main' class="chart div-inline">
         </div>
@@ -80,7 +80,7 @@
                 btn.style.display = "none"
                 new Spinner({color:'#000', lines: 2, length: 15, speed: 2.0}).spin(target)
                 
-                setTimeout(() => {
+                setTimeout(function() {
                     for (var i = pageStart; i < (pageStart + pageSize) && i<List.length; i++) {
                         show_card(List[i])
                     }
