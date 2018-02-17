@@ -36,7 +36,7 @@ body {
 
 .poster {
   margin: 0 5% 0 3%;
-  width: 22%;
+  width: 23%;
   height: 100%;
   border: 5px;
   border-style: solid
@@ -107,7 +107,7 @@ body {
   padding: 20px 50px;
   
   width: 1000px;
-  height: 500px;
+  height: 600px;
 
   box-shadow: 2px 2px 5px #9C7878;
   transition: 0.3s;
