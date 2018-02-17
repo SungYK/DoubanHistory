@@ -36,7 +36,7 @@ body {
 
 .poster {
   margin: 0 5% 0 3%;
-  width: 23%;
+  width: 225px;
   height: 100%;
   border: 5px;
   border-style: solid
@@ -44,7 +44,7 @@ body {
 
 .chart {
   padding-left: 5%;
-  width: 65%;
+  width: 650px;
   height: 100%;
   /* border: 3px; */
   border-left: 3px dotted #eaeaea;
@@ -72,7 +72,8 @@ body {
     height: 20px;
     border-radius: 20px;
     background-color: #E2DFDF;
-    left: 297px;
+    /* left: 297px; */
+    left: 309px;
     top:-10px;
     /* box-shadow: 0px -1px 10px #9C7878 inset; */
     /* border: 3px;
@@ -84,7 +85,7 @@ body {
     height: 20px;
     border-radius: 20px;
     background-color: #E2DFDF;
-    left: 297px;
+    left: 309px;
     bottom: -10px;
     box-shadow: 0px 1px 0.5px #9C7878 inset;
 }
