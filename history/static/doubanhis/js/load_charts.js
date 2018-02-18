@@ -5,7 +5,8 @@ function initChart(element, title, rating, id) {
     var data = []
     var dataX = []
     var dataY = []
-    
+    var today = 0
+
     empty_data_flag = 1
 
     // gap
@@ -16,7 +17,7 @@ function initChart(element, title, rating, id) {
         var month = key.substring(5, key.length)
         dataX.push(year+"\n"+month)
         dataY.push(rating[key])
-        
+        today = rating[key]
         // data.push(getData(new Date(key), rating[key]))
         if(rating[key] != 0)
             empty_data_flag = 0
@@ -24,7 +25,7 @@ function initChart(element, title, rating, id) {
     // gap
     dataX.push(" ")
     dataY.push(null)
-    console.log(dataX)
+    // console.log(dataX)
     
     if (empty_data_flag == 1) {
         title = title + " (暂无数据)"
@@ -66,6 +67,10 @@ function initChart(element, title, rating, id) {
             max: function (value) {
                 return value.max + 0.5;
             },
+            // min:0,
+            // max:10,
+            // silent: true,
+            
             type: 'value'
         },
         dataZoom: [
@@ -77,7 +82,13 @@ function initChart(element, title, rating, id) {
         ],
         series: [{
             data: dataY,
-            type: 'line'
+            type: 'line',
+            markPoint: {
+                data: [
+                    {coord: [dataY.length-2, today], name: '今日评分', value: today},
+                    
+                ]
+            },
         }],
     };
     // myChart.showLoading()
