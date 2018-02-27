@@ -15,12 +15,15 @@ function initChart(element, title, rating, id) {
     for(var key in rating) {
         var year = key.substring(0,4)
         var month = key.substring(5, key.length)
-        dataX.push(year+"\n"+month)
-        dataY.push(rating[key])
-        today = rating[key]
-        // data.push(getData(new Date(key), rating[key]))
-        if(rating[key] != 0)
+        if(rating[key] != 0) {
+            dataX.push(year+"\n"+month)
+            dataY.push(rating[key])
+            today = rating[key]
             empty_data_flag = 0
+        }
+        
+        // data.push(getData(new Date(key), rating[key]))
+            
     }
     // gap
     dataX.push(" ")
@@ -93,9 +96,9 @@ function initChart(element, title, rating, id) {
     };
     // myChart.showLoading()
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-    myChart.hideLoading()
-    return rating
+   
+    myChart.setOption(option)
+
     
 }
 
