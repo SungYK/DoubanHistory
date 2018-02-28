@@ -131,6 +131,7 @@ body {
 @media screen and (max-width: 500px) {
   .card {
       width: 100%;
+      padding: 20px 0;
       /* background-color:rgb(8, 29, 36); */
   }
   .chart {
