@@ -12,10 +12,17 @@ function initChart(element, title, rating, id) {
     // gap
     dataX.push(" ")
     dataY.push(null)
+
+    // first day tag
+    firstday = 1
     for(var key in rating) {
         var year = key.substring(0,4)
         var month = key.substring(5, key.length)
         if(rating[key] != 0) {
+            if(firstday==1) {
+                pub_day = rating[key]
+                firstday = 0
+            }
             dataX.push(year+"\n"+month)
             dataY.push(rating[key])
             today = rating[key]
@@ -89,7 +96,7 @@ function initChart(element, title, rating, id) {
             markPoint: {
                 data: [
                     {coord: [dataY.length-2, today], name: '今日评分', value: today},
-                    
+                    {coord: [1, pub_day], name: '首日评分', value: pub_day}
                 ]
             },
         }],
