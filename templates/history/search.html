@@ -1,33 +1,32 @@
 {% extends 'base.html' %} 
 {% block main %}
-<form class="note" method="get" action="/search/" >
 
-    
-    
-  </form>
-<!-- <h3 class="note">关键词: {{ query }}</h3> -->
-<div class="card_list"></div>
-<div class="not_found note"></div>
+
+<div class="container">
+    <!-- <h3 class="note">关键词: {{ query }}</h3> -->
+    <div class="card_list"></div>
+    <div class="not_found note"></div>
+</div>
 <script>
     var List = {{ lst| safe }}
 
-    if(List.length == 0) {
+    if (List.length == 0) {
         result = "<h1>没有找到相关结果</h1>\
                   <br/><h4>* 目前仅收录2018-2月起大陆院线上映电影评分数据</h4>"
         $('div.not_found').append(result)
     }
 
     function show_card(data) {
-            var pk = data[0]
-            var id = 'chart-' + pk
-            var title = data[1]
-            var original_title = data[2]
-            var show_title = title
-            if (title != original_title)
-                show_title = title + ' - ' + original_title
-            var rating = JSON.parse(data[3])
-            var img_src = "../static/doubanhis/img/poster/" + pk + ".jpg"
-            result = "<div class='card'>\
+        var pk = data[0]
+        var id = 'chart-' + pk
+        var title = data[1]
+        var original_title = data[2]
+        var show_title = title
+        if (title != original_title)
+            show_title = title + ' - ' + original_title
+        var rating = JSON.parse(data[3])
+        var img_src = "../static/doubanhis/img/poster/" + pk + ".jpg"
+        result = "<div class='card'>\
                             <div class='poster div-inline poster-"+ pk + "'>\
                                 <img src='"+ img_src + "' alt='" + title + "'>\
                             </div>\
@@ -35,10 +34,10 @@
                             <div class='hole-1'></div>\
                             <div class='hole-2'></div>\
                             </div>"
-            $('div.card_list').append(result)
-            var chart = document.getElementById(id)
-            initChart(chart, show_title, rating, pk)
-        }
+        $('div.card_list').append(result)
+        var chart = document.getElementById(id)
+        initChart(chart, show_title, rating, pk)
+    }
     for (var i = 0; i < List.length; i++) {
         show_card(List[i])
     }
