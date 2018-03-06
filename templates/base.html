@@ -43,6 +43,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
 
                 </button>
                 <a class="navbar-brand" href="/">豆瓣历史 30 天</a>
@@ -55,13 +56,18 @@
                     <li id="nav-about">
                         <a href="/about">关于</a>
                     </li>
-                    <!-- <li>
-                        <a href="#contact">反馈</a>
-                    </li> -->
                 </ul>
+                <form class="navbar-form navbar-right" method="get" action="/search/" >
+                    {% csrf_token %}
+                    <div class="form-group search" >
+                      <input name = "q" type="text" class="form-control" placeholder="Film">
+                    </div>
+                    <button type="submit" class="btn btn-search ">搜索</button>
+                  </form>
             </div>
             <!--/.nav-collapse -->
         </div>
+        
     </nav>
 
     {% block main %} {% endblock main %}

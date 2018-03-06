@@ -14,3 +14,16 @@ def index(request):
 
 def about(request):
     return render(request, 'history/about.html')
+
+def search(request):
+    q = request.GET.get('q')
+    if q == None or q == '':
+        return render(request, 'history/search.html', context={'query':q, 'lst':[]})
+
+    subject_list = Subject.objects.filter(title__icontains=q)
+
+    lst = []
+    for i in subject_list:
+        lst.append([i.pk, i.title, i.original_title, i.history_rating])
+
+    return render(request, 'history/search.html', context={'query':q, 'lst':lst})
