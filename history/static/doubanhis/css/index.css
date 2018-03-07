@@ -108,7 +108,7 @@ body {
   padding: 20px 50px;
   
   width: 1000px;
-  height: 620px;
+  height: 100%;
 
   box-shadow: 2px 2px 5px #9C7878;
   transition: 0.3s;
@@ -125,6 +125,23 @@ body {
 .about li{
   font-size: 17px;
   font-style: oblique
+}
+
+.comment {
+  position: relative;
+  
+  
+  margin:30px auto;
+  padding: 20px 50px;
+  
+  width: 1000px;
+  
+
+  
+  
+  /* border: 5px;
+  border-style: solid */
+
 }
 
 
@@ -161,6 +178,9 @@ body {
   .about{
     width: 100%;
     height: 100%
+  }
+  .comment {
+    width: 100%;
   }
   .navcustom {
     width: 100%;
