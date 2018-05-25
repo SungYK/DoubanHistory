@@ -39,6 +39,7 @@ function initChart(element, title, rating, id) {
     
     if (empty_data_flag == 1) {
         title = title + " (暂无数据)"
+        pub_day = today
     }
     
     // 指定图表的配置项和数据
